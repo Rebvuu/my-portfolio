@@ -29,6 +29,6 @@ The goal of this website is to:
 
 Reach out:
 
-- Portfolio: 
+- Portfolio: https://my-portfolio-seven-iota-67.vercel.app/
 - LinkedIn: https://linkedin.com/in/rebecca-vuurman-497b98285
 - Email: rebecca.vuurman@gmail.com
