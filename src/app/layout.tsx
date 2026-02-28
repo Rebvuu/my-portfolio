@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Quicksand, Inter} from "next/font/google";
 import "./globals.css";
 import { StarsBackground } from "../components/animate-ui/components/backgrounds/stars";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} ${quicksand.className} antialiased`}>
         <StarsBackground>{children}</StarsBackground>
+        <Analytics />
       </body>
     </html>
   );
