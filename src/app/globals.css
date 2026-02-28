@@ -48,71 +48,71 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: #fdfffc;
+  --foreground: #fff0c7;
+  --card: #fdfffc;
+  --card-foreground: #7b61c9;
+  --popover: #fdfffc;
+  --popover-foreground: #1f1a2e;
+  --primary: #978ab8;
+  --primary-foreground: #fdfffc;
+  --secondary: #fddee4;
+  --secondary-foreground: #2b1d34;
+  --muted: #e2ebf2;
+  --muted-foreground: #4a4560;
+  --accent: #8da0ca;
+  --accent-foreground: #1e2b44;
+  --destructive: #c74b5a;
+  --border: #e2ebf2;
+  --input: #e2ebf2;
+  --ring: #d799c9;
+  --chart-1: #978ab8;
+  --chart-2: #d799c9;
+  --chart-3: #8da0ca;
+  --chart-4: #e2ebf2;
+  --chart-5: #fddee4;
+  --sidebar: #fdfffc;
+  --sidebar-foreground: #1f1a2e;
+  --sidebar-primary: #978ab8;
+  --sidebar-primary-foreground: #fdfffc;
+  --sidebar-accent: #fddee4;
+  --sidebar-accent-foreground: #2b1d34;
+  --sidebar-border: #e2ebf2;
+  --sidebar-ring: #d799c9;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #141023;
+  --foreground: #fdfffc;
+  --card: #1c1730;
+  --card-foreground: #fdfffc;
+  --popover: #1c1730;
+  --popover-foreground: #fdfffc;
+  --primary: #d799c9;
+  --primary-foreground: #141023;
+  --secondary: #242139;
+  --secondary-foreground: #fdfffc;
+  --muted: #1f2033;
+  --muted-foreground: #c8c5d8;
+  --accent: #8da0ca;
+  --accent-foreground: #0f162b;
+  --destructive: #f27b7b;
+  --border: #2f2a44;
+  --input: #2f2a44;
+  --ring: #d799c9;
+  --chart-1: #d799c9;
+  --chart-2: #8da0ca;
+  --chart-3: #978ab8;
+  --chart-4: #fddee4;
+  --chart-5: #e2ebf2;
+  --sidebar: #1c1730;
+  --sidebar-foreground: #fdfffc;
+  --sidebar-primary: #d799c9;
+  --sidebar-primary-foreground: #141023;
+  --sidebar-accent: #242139;
+  --sidebar-accent-foreground: #fdfffc;
+  --sidebar-border: #2f2a44;
+  --sidebar-ring: #d799c9;
 }
 
 @layer base {
@@ -122,4 +122,19 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--accent) 70%, white);
+    color: var(--accent-foreground);
+  }
+}
+
+.point .icon {
+  position: relative;
+  transition: .5s;
+  z-index: 3;
+}
+
+.point:hover .icon {
+  transform: rotateY(360deg);
 }
