@@ -154,8 +154,7 @@ export default function Home() {
                   Design system thinking
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  I build interfaces as scalable systems — prioritising
-                  consistency, reusability, and long-term maintainability.
+                  I design scalable interfaces with a focus on consistency, reusability, and long-term maintainability.
                 </p>
               </div>
               <div className="rounded-xl border border-muted-foreground/20 bg-secondary/30 p-4">
