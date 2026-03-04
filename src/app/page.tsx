@@ -43,18 +43,16 @@ export default function Home() {
     <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-6 py-16 md:py-20">
       <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
         <div className="space-y-6">
-          <Badge className="bg-secondary text-secondary-foreground px-4 py-2 text-sm shadow-sm shadow-secondary/40">
-            Open to frontend & product teams
+          <Badge className="bg-secondary text-secondary-foreground/70 px-4 py-2 text-sm shadow-sm shadow-secondary/40">
+            Rebecca Vuurman
           </Badge>
 
           <div className="space-y-4">
             <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              ★ Design systems and product interfaces built with clarity and
-              precision.
+              ★ I'm a frontend-leaning full stack developer with a strong background in UX design
             </h1>
             <p className="max-w-2xl text-lg text-muted-foreground">
-              I partner with product and design teams to build scalable,
-              accessible interfaces that balance craft and performance.
+              I'm passionate about transforming complex requirements into simple, clean interfaces.
             </p>
           </div>
 
