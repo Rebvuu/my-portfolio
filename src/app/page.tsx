@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -23,6 +24,7 @@ import {
   CardTitle,
 } from "@/src/components/ui/card";
 import { projects } from "../data/projects";
+import ContactForm from "../components/ContactForm"
 
 const focusAreas = [
   "Reusable UI patterns",
@@ -377,6 +379,7 @@ export default function Home() {
               </Link>
             </Button>
           </div>
+          <ContactForm />
         </div>
 
         <Card className="border-muted/80 bg-white/80 shadow-sm backdrop-blur">
