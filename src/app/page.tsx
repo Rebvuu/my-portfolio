@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -41,6 +42,9 @@ const highlights = [
 ];
 
 export default function Home() {
+
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
   return (
     <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-6 py-16 md:py-20">
       <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -64,7 +68,7 @@ export default function Home() {
               size="lg"
               className="shadow-md shadow-primary/30 transition duration-300 hover:translate-x-0.5 hover:shadow-md"
             >
-              <Link href="mailto:rebecca.vuurman@gmail.com">
+              <Link href="#contact">
                 <Mail className="size-4" />
                 Say hi
               </Link>
@@ -343,7 +347,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid gap-4 rounded-2xl border p-6 border-primary/30 bg-white/70 bg-linear-to-br from-[#fddee4]/60 via-white/80 to-[#e2ebf2]/80 backdrop-blur shadow-lg shadow-[#8da0ca]/20 md:grid-cols-[1.1fr_0.9fr] md:p-10">
+      <section className="grid gap-4 rounded-2xl border p-6 border-primary/30 bg-white/70 bg-linear-to-br from-[#fddee4]/60 via-white/80 to-[#e2ebf2]/80 backdrop-blur shadow-lg shadow-[#8da0ca]/20 md:grid-cols-[1.1fr_0.9fr] md:p-10"
+      id="contact">
         <div className="space-y-3">
           <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
             Collaborate
@@ -360,12 +365,13 @@ export default function Home() {
             <Button
               asChild
               size="lg"
-              className="shadow-md shadow-primary/30 transition duration-300 hover:translate-x-0.5 hover:shadow-md"
+              className="shadow-md shadow-primary/30 transition duration-300 hover:translate-x-0.5 hover:shadow-md cursor-pointer"
+              onClick={() => setIsVisible(!isVisible)}
             >
-              <Link href="mailto:rebecca.vuurman@gmail.com">
-                <Mail className="size-4" />
-                Start a conversation
-              </Link>
+              <span>
+              <Mail className="size-4" />
+              Start a conversation
+              </span>
             </Button>
             <Button
               asChild
@@ -379,7 +385,9 @@ export default function Home() {
               </Link>
             </Button>
           </div>
-          <ContactForm />
+          {isVisible && (
+            <ContactForm />
+          )}
         </div>
 
         <Card className="border-muted/80 bg-white/80 shadow-sm backdrop-blur">
