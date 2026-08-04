@@ -242,7 +242,7 @@ export default function CoursePlatformCaseStudy() {
           </p>
 
           <a
-            href="https://hersacredvoice.com.au/"
+            href="https://her-sacred-voice.vercel.app/"
             target="_blank"
             className="inline-block px-6 py-3 rounded bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition duration-300 hover:translate-x-0.5 hover:shadow-md"
           >
