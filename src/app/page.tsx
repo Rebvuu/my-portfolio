@@ -1,21 +1,31 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   ArrowUpRight,
+  ChevronRight,
+  Computer,
   ExternalLink,
   Eye,
   Github,
   Globe2,
   Mail,
   MapPin,
+  MonitorCog,
   Sparkles,
   SquareStack,
   Star,
+  TabletSmartphone,
+  User,
+  UsersRound,
+  Wallpaper,
+  Wrench,
 } from "lucide-react";
 
-import { Badge } from "@/src/components/ui/badge";
-import { Button } from "@/src/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import {
   Card,
   CardContent,
@@ -23,9 +33,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/src/components/ui/card";
+} from "@/components/ui/card";
 import { projects } from "../data/projects";
 import ContactForm from "../components/ContactForm"
+import PullTabSidebar from "../components/sideBar";
+import { Separator } from "../components/ui/separator";
+import Image from "next/image";
+import { StarsBackground } from "@/components/animate-ui/components/backgrounds/stars";
+import { Inter } from "next/font/google";
+import InteractiveCube from "@/components/Cube";
+import PlanetScene from "@/components/Planet";
 
 const focusAreas = [
   "Reusable UI patterns",
@@ -35,247 +52,401 @@ const focusAreas = [
   "Component architecture",
 ];
 
-const highlights = [
-  { label: "Based in", value: "Melbourne, Australia | Open to remote roles", icon: MapPin },
-  { label: "Experience", value: "2+ years building for the web", icon: Sparkles },
-  { label: "Stack", value: "TypeScript · React · Next.js · Tailwind", icon: SquareStack },
+const menuItems = [
+  { label: "Get in touch", href: "#contact" },
+  { label: "Projects", href: "#projects" },
+  { label: "About me", href: "#about" },
 ];
 
-export default function Home() {
+const logoContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
 
+const logoItem = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
+export default function Home() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isContactFormVisible, setIsContactFormVisible] = useState<boolean>(false);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [isFrontendClicked, setIsFrontendClicked] = useState<boolean>(true);
+  const [isUIUXClicked, setIsUIUXClicked] = useState<boolean>(false);
+  const [isFullStackClicked, setIsFullStackClicked] = useState<boolean>(false);
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-12 px-6 py-16 md:py-20">
-      <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+    <main className="mx-auto flex min-h-screen max-w-7xl flex-col gap-12 px-6 py-16 md:py-20">
+      <div className="absolute -z-10 top-30 right-[-10%] w-full">
+        {/* <script
+            type="module"
+            src="https://cdn.spline.design/@splinetool/viewer@2.0.52/build/spline-viewer.js"
+          ></script> */}
+        <PlanetScene />
+      </div>
+      <section className="grid gap-10 lg:items-start">
         <div className="space-y-6">
-          <Badge className="bg-secondary text-secondary-foreground/70 px-4 py-2 text-sm shadow-sm shadow-secondary/40">
-            Rebecca Vuurman
-          </Badge>
-
-          <div className="space-y-4">
-            <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              ★ I'm a frontend-leaning full stack developer with a strong background in UX design
-            </h1>
-            <p className="max-w-2xl text-lg text-muted-foreground">
-              I'm passionate about transforming complex requirements into simple, clean interfaces.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Button
-              asChild
-              size="lg"
-              className="shadow-md shadow-primary/30 transition duration-300 hover:translate-x-0.5 hover:shadow-md"
-            >
-              <Link href="#contact">
-                <Mail className="size-4" />
-                Say hi
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-accent/50 bg-white/60 backdrop-blur text-secondary-foreground transition duration-300 hover:translate-x-0.5 hover:shadow-md"
-            >
-              <Link href="#projects">
-                <ArrowUpRight className="size-4" />
-                View projects
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="ghost"
-              className="text-secondary-foreground/70"
-            >
-              <Link href="https://github.com/rebvuu" target="_blank">
-                <Github className="size-4" />
-                GitHub
-              </Link>
-            </Button>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Card className="border-primary/30 bg-white/70 bg-linear-to-br from-[#fddee4]/60 via-white/80 to-[#e2ebf2]/80 backdrop-blur shadow-lg shadow-[#d799c9]/20">
-              <CardHeader className="flex flex-row items-start justify-between gap-2">
-                <div className="space-y-1.5">
-                  <p className="text-sm text-muted-foreground">Latest work</p>
-                  <CardTitle className="text-xl">
-                    Web3 marketplace for digital art
-                  </CardTitle>
-                  <CardDescription>
-                    Contributed front-end UI and product flows for a digital art
-                    marketplace, improving consistency, theming, and release
-                    reliability.
-                  </CardDescription>
+          <div className="flex min-h-screen flex-col items-start gap-6 md:mt-20 lg:gap-8">
+            <div className="group flex md:max-w-3/4">
+              <aside
+                id="portfolio-sidebar"
+                className={[
+                  "fixed inset-y-0 left-0 z-50 w-64",
+                  "border-r bg-background shadow-xl",
+                  "transition-transform duration-500",
+                  "ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  isVisible
+                    ? "translate-x-0 delay-75"
+                    : "-translate-x-full delay-0",
+                ].join(" ")}
+              >
+                <div className="flex h-full flex-col justify-center px-8">
+                  <nav className="flex flex-col items-start space-y-4 h-full pt-10">
+                    {menuItems.map((item, index) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setIsVisible(false)}
+                        className={[
+                          "w-full transition duration-300 px-3 py-2",
+                          "text-base font-medium text-primary",
+                          "transition-[opacity,transform,background-color]",
+                          "duration-300 ease-out",
+                          "hover:translate-x-1",
+                          isVisible
+                            ? "translate-x-0 opacity-100"
+                            : "-translate-x-5 opacity-0",
+                        ].join(" ")}
+                        style={{
+                          transitionDelay: isVisible
+                            ? `${150 + index * 75}ms`
+                            : `${(menuItems.length - index - 1) * 40}ms`,
+                        }}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </nav>
                 </div>
-                <Badge className="bg-primary/15 text-primary">2025</Badge>
-              </CardHeader>
-              <CardFooter className="px-6">
-                <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Sparkles className="size-4" />
-                    <span>Design systems</span>
-                  </div>
-                  <span aria-hidden="true">•</span>
-                  <span>Next.js · Tailwind</span>
-                </div>
-              </CardFooter>
-            </Card>
 
-            <Card className="border-primary/30 bg-white/70 bg-linear-to-br from-[#fddee4]/60 via-white/80 to-[#e2ebf2]/80 shadow-lg shadow-[#d799c9]/20 backdrop-blur">
-              <CardHeader>
-                <CardTitle className="text-xl">What I focus on</CardTitle>
-                <CardDescription>
-                  Transforming intricate back-end logic into a simple, engaging
-                  interface that users love.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-2">
-                {focusAreas.map((item) => (
-                  <Badge key={item} variant="default">
-                    {item}
-                  </Badge>
-                ))}
-              </CardContent>
-            </Card>
+                <button
+                  type="button"
+                  aria-controls="portfolio-sidebar"
+                  aria-expanded={isVisible}
+                  aria-label={
+                    isVisible ? "Close navigation" : "Open navigation"
+                  }
+                  onClick={() => setIsVisible((current) => !current)}
+                  className={[
+                    "absolute left-full top-1/2",
+                    "flex h-28 w-11 -translate-y-1/2 items-center justify-center",
+                    "rounded-r-2xl border border-l-0 bg-background shadow-md",
+                    "transition-all duration-500",
+                    "ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+                    "hover:w-13 hover:bg-accent",
+                    "focus-visible:outline-none focus-visible:ring-2",
+                    "focus-visible:ring-primary focus-visible:ring-offset-2",
+                    isVisible
+                      ? "translate-x-0"
+                      : "translate-x-3 group-hover:translate-x-5",
+                  ].join(" ")}
+                >
+                  <ChevronRight
+                    aria-hidden="true"
+                    className={[
+                      "size-5 transition-transform duration-500",
+                      isVisible ? "rotate-180" : "rotate-0",
+                    ].join(" ")}
+                  />
+                </button>
+              </aside>
+
+              <div
+                className={[
+                  "space-y-4 transition-transform duration-500",
+                  "ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  isVisible
+                    ? "translate-x-6 md:translate-x-14"
+                    : "translate-x-0",
+                ].join(" ")}
+              >
+                <h1 className="font-inter text-4xl font-bold uppercase tracking-tight transition-transform duration-300 md:text-5xl">
+                  I&apos;m a frontend developer
+                  <br /> in Melbourne
+                </h1>
+
+                <p className="max-w-2xl text-lg text-muted-foreground transition-transform duration-300">
+                  I&apos;m passionate about bringing ideas to life through
+                  design and code.
+                </p>
+              </div>
+
+              {/* <PlanetScene /> */}
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <Button
+                asChild
+                size="lg"
+                className="shadow-md shadow-primary/30 transition duration-300 hover:transform hover:scale-110 hover:shadow-md px-10"
+              >
+                <Link href="#contact">
+                  <Mail className="size-4" />
+                  Say hi
+                </Link>
+              </Button>
+
+              {/* <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-accent/50 bg-white/60 text-secondary-foreground backdrop-blur transition duration-300 hover:translate-x-0.5 hover:shadow-md"
+              >
+                <Link href="#projects">
+                  <ArrowUpRight className="size-4" />
+                  View projects
+                </Link>
+              </Button> */}
+
+              <Button
+                asChild
+                size="sm"
+                variant="ghost"
+                className="text-secondary-foreground/70 hover:bg-background hover:border hover:transform transition duration-300 hover:scale-110"
+              >
+                <Link
+                  href="https://github.com/rebvuu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="size-4" />
+                  GitHub
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div className="space-y-4">
-          <Card className="border-primary/30 bg-white/70 bg-linear-to-br from-[#fddee4]/60 via-white/80 to-[#e2ebf2]/80 shadow-lg shadow-[#d799c9]/20 backdrop-blur">
-            <CardHeader>
-              <CardTitle className="text-2xl">Working style</CardTitle>
-              <CardDescription>
-                Calm, collaborative, and focused on making teams faster.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="rounded-xl border border-accent/40 bg-accent/10 p-4">
-                <p className="text-sm font-semibold text-primary">
-                  Design system thinking
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  I design scalable interfaces with a focus on consistency, reusability, and long-term maintainability.
-                </p>
-              </div>
-              <div className="rounded-xl border border-muted-foreground/20 bg-secondary/30 p-4">
-                <p className="text-sm font-semibold text-primary">
-                  Close collaboration
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  I work closely with designers and product teams to translate
-                  complex requirements into intuitive UI.
-                </p>
-              </div>
-              <div className="rounded-xl border border-muted-foreground/20 bg-muted/40 p-4">
-                <p className="text-sm font-semibold text-primary">
-                  Detail-oriented execution
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Focused on accessibility, performance, and polished
-                  interaction details across devices.
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-wrap gap-3">
-              {highlights.map(({ label, value, icon: Icon }) => (
-                <div
-                  key={label}
-                  className="flex items-center gap-2 rounded-full border border-border bg-white/70 px-3 py-2 text-sm shadow-sm backdrop-blur"
-                >
-                  <Icon className="size-4 text-primary" />
-                  <div className="leading-tight">
-                    <p className="text-xs text-muted-foreground">{label}</p>
-                    <p className="font-medium">{value}</p>
-                  </div>
-                </div>
-              ))}
-            </CardFooter>
-          </Card>
+      <section
+        id="about"
+        className="space-y-6 grid md:grid-cols-3 min-h-screen gap-4 md:gap-8 lg:gap-12 xl:gap-16"
+      >
+        <div className="md:h-full">
+          <ButtonGroup orientation="vertical" className="w-full">
+            <Button
+              variant="outline"
+              className="h-20 w-full cursor-pointer transition duration-300 hover:scale-105 hover:bg-border"
+              onClick={() => {
+                setIsFrontendClicked(true);
+                setIsUIUXClicked(false);
+                setIsFullStackClicked(false);
+              }}
+            >
+              <Wallpaper className="mr-1 size-6" />
+              Frontend
+            </Button>
+
+            <Button
+              variant="outline"
+              className="h-20 w-full cursor-pointer transition duration-300 hover:scale-105 hover:bg-border"
+              onClick={() => {
+                setIsFrontendClicked(false);
+                setIsUIUXClicked(true);
+                setIsFullStackClicked(false);
+              }}
+            >
+              <TabletSmartphone className="mr-1 size-6" />
+              UI/UX
+            </Button>
+
+            <Button
+              variant="outline"
+              className="h-20 w-full cursor-pointer transition duration-300 hover:scale-105 hover:bg-border"
+              onClick={() => {
+                setIsFrontendClicked(false);
+                setIsUIUXClicked(false);
+                setIsFullStackClicked(true);
+              }}
+            >
+              <MonitorCog className="mr-1 size-6" />
+              Full Stack
+            </Button>
+          </ButtonGroup>
+        </div>
+        <div className="flex md:flex-start flex-col gap-4 md:h-full items-center">
+          <h2 className="text-3xl font-semibold">About Me</h2>
+          <p className="text-lg text-muted-foreground">
+            I'm a Web developer with a passion for creating delightful and
+            unique user experiences. When I'm not coding or designing, I'm
+            enjoying peace and quiet at home, playing games or baking.
+          </p>
+          <p className="font-semibold">What I use:</p>
+          {isFrontendClicked ? (
+            <motion.div
+              className="flex flex-wrap gap-4"
+              variants={logoContainer}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/react.webp"
+                alt="React logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/nextjs01.png"
+                alt="Next.js logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/typescript01.png"
+                alt="TypeScript logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/tailwind.png"
+                alt="Tailwind CSS logo"
+                className="h-20 border p-2"
+              />
+            </motion.div>
+          ) : null}
+
+          {isUIUXClicked ? (
+            <motion.div
+              className="flex flex-wrap gap-4"
+              variants={logoContainer}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/figma.png"
+                alt="Figma logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/shadcnui01.png"
+                alt="shadcn/ui logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/motionone.png"
+                alt="Motion One logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/animateui.png"
+                alt="Animate UI logo"
+                className="h-20 border p-2"
+              />
+
+              {/* <motion.img
+                  variants={logoItem}
+                  src="/img/logo/antdesign.png"
+                  alt="Ant Design logo"
+                  className="h-20"
+                /> */}
+            </motion.div>
+          ) : null}
+
+          {isFullStackClicked ? (
+            <motion.div
+              className="flex flex-wrap gap-4"
+              variants={logoContainer}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/nodejs01.png"
+                alt="Node.js logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/postgresql01.png"
+                alt="PostgreSQL logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/nextauthjs.png"
+                alt="NextAuth.js logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/prisma.png"
+                alt="Prisma logo"
+                className="h-20 border p-2"
+              />
+
+              <motion.img
+                variants={logoItem}
+                src="/img/logo/aws.png"
+                alt="AWS logo"
+                className="h-20 border p-2"
+              />
+            </motion.div>
+          ) : null}
+        </div>
+        <div className="flex flex-col items-center gap-4 md:h-full">
+          <Image
+            src="/img/profile3.jpg"
+            alt="Profile picture"
+            width={300}
+            height={300}
+            className="rounded-full border border-primary shadow-md shadow-primary/30"
+          />
         </div>
       </section>
 
       <section id="projects" className="space-y-6">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
-              Selected work
-            </p>
             <h2 className="text-3xl font-semibold">
               Selected Frontend & UI Work
             </h2>
           </div>
-          {/* <Button asChild variant="ghost" className="hidden sm:inline-flex">
-            <Link href="/projects">
-              <ExternalLink className="size-4" />
-              View all
-            </Link>
-          </Button> */}
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {/* {projects.slice(0, 3).map((project) => (
-            <Card
-              key={project.title}
-              className="group h-full transition hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/15 border-primary/30 bg-white/70 bg-linear-to-br from-[#fddee4]/60 via-white/80 to-[#e2ebf2]/80 backdrop-blur shadow-lg shadow-[#978ab8]/20"
-            >
-              <CardHeader className="flex flex-row items-start justify-between gap-3">
-                <div className="space-y-1.5">
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </div>
-                {project.status === "in-progress" ? (
-                  <Badge className="bg-muted text-primary">In progress</Badge>
-                ) : (
-                  <Badge className="bg-muted text-primary">Live (beta)</Badge>
-                )}
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="outline"
-                      className="border-muted-foreground/20 text-muted-foreground"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-              <CardFooter className="flex items-center gap-3 px-6 pb-6">
-                {project.link ? (
-                  <Button asChild variant="link" className="px-0 text-primary">
-                    <Link href={project.link} target="_blank">
-                      <ExternalLink className="mr-1 size-4" />
-                      Live
-                    </Link>
-                  </Button>
-                ) : null}
-                {project.repo ? (
-                  <Button asChild variant="link" className="px-0 text-primary">
-                    <Link href={project.repo} target="_blank">
-                      <Github className="mr-1 size-4" />
-                      Repo
-                    </Link>
-                  </Button>
-                ) : null}
-                {project.year ? (
-                  <span className="ml-auto text-sm text-muted-foreground">
-                    {project.year}
-                  </span>
-                ) : null}
-              </CardFooter>
-            </Card>
-          ))} */}
           {projects.map((project) => (
-            <Card
-              key={project.title}
-              className="transition hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/15 border-primary/30 bg-white/70 bg-linear-to-br from-[#fddee4]/60 via-white/80 to-[#e2ebf2]/80 backdrop-blur shadow-lg shadow-[#978ab8]/20"
-            >
+            <Card key={project.title} className="border">
               <CardHeader className="flex flex-row items-start justify-between gap-3">
                 <div className="space-y-1.5">
                   <CardTitle className="text-xl">{project.title}</CardTitle>
@@ -288,7 +459,7 @@ export default function Home() {
                     <Badge
                       key={tag}
                       variant="outline"
-                      className="text-muted-foreground"
+                      className="text-muted-foreground font-light"
                     >
                       {tag}
                     </Badge>
@@ -308,7 +479,7 @@ export default function Home() {
                   <Button
                     asChild
                     variant="default"
-                    className="px-0 transition duration-300 hover:translate-x-0.5 hover:shadow-md"
+                    className="px-0 shadow-md shadow-primary/30 transition duration-300 hover:transform hover:scale-110 hover:shadow-md cursor-pointer"
                   >
                     <Link href={project.url} target="_blank">
                       <Eye className="mr-1 size-4" />
@@ -320,7 +491,7 @@ export default function Home() {
                   <Link
                     href={project.link}
                     target="_blank"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline hover:transform transition duration-300 hover:scale-110"
                   >
                     <ExternalLink className="size-4" />
                     Live (beta)
@@ -347,75 +518,45 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid gap-4 rounded-2xl border p-6 border-primary/30 bg-white/70 bg-linear-to-br from-[#fddee4]/60 via-white/80 to-[#e2ebf2]/80 backdrop-blur shadow-lg shadow-[#8da0ca]/20 md:grid-cols-[1.1fr_0.9fr] md:p-10"
-      id="contact">
+      <section
+        className="grid gap-4 rounded-2xl border p-6 md:grid-cols-[1.1fr_0.9fr] md:p-10 relative"
+        id="contact"
+      >
+        <StarsBackground className="absolute inset-0 -z-10 h-full w-full" />
         <div className="space-y-3">
-          <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
-            Collaborate
-          </p>
           <h3 className="text-3xl font-semibold text-card-foreground">
-            Let&apos;s build better product experiences
+            Let&apos;s build better user experiences
           </h3>
           <p className="text-lg text-muted-foreground">
-            Send me a message if you'd like to collaborate or want to chat about
-            UI and design! I'm always open to connecting with other designers
-            and developers.
+            Shoot me a message if you'd like to collaborate or want to chat
+            about UI and design :)
           </p>
           <div className="flex flex-wrap gap-3">
             <Button
               asChild
               size="lg"
-              className="shadow-md shadow-primary/30 transition duration-300 hover:translate-x-0.5 hover:shadow-md cursor-pointer"
-              onClick={() => setIsVisible(!isVisible)}
+              className="shadow-md shadow-primary/30 transition duration-300 hover:transform hover:scale-110 hover:shadow-md cursor-pointer"
+              onClick={() => setIsContactFormVisible(!isContactFormVisible)}
             >
               <span>
-              <Mail className="size-4" />
-              Start a conversation
+                <Mail className="size-4" />
+                Email me
               </span>
             </Button>
             <Button
               asChild
-              size="lg"
+              size="sm"
               variant="outline"
-              className="border-primary/40 text-primary transition duration-300 hover:translate-x-0.5 hover:shadow-md"
+              className="border-primary/40 text-primary transition duration-300 hover:transform hover:scale-105 hover:shadow-md"
             >
               <Link href="/projects">
                 <ArrowUpRight className="size-4" />
-                See detailed case studies
+                See full case studies
               </Link>
             </Button>
           </div>
-          {isVisible && (
-            <ContactForm />
-          )}
+          {isContactFormVisible && <ContactForm />}
         </div>
-
-        <Card className="border-muted/80 bg-white/80 shadow-sm backdrop-blur">
-          <CardHeader>
-            <CardTitle>Ways I can help</CardTitle>
-            <CardDescription>
-              Bring me in to refine user flows, elevate UI polish, and make
-              interfaces feel effortless.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {[
-              "Shape and maintain design systems with strong documentation.",
-              "Translate complex product flows into intuitive UI.",
-              "Improve performance, accessibility, and testing coverage.",
-              "Mentor teams on UI engineering best practices.",
-            ].map((item) => (
-              <div
-                key={item}
-                className="flex items-center justify-start gap-3 rounded-xl border border-border bg-muted/40 px-4 py-3"
-              >
-                {/* <span className="mt-1 inline-block size-2 rounded-full bg-primary" /> */}
-                <Star className="size-4 text-primary" />
-                <p className="text-sm text-primary">{item}</p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
       </section>
     </main>
   );

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowBigLeft, Binoculars, ExternalLink, Eye, Github } from "lucide-react";
 
-import { Badge } from "@/src/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -9,9 +9,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/src/components/ui/card";
+} from "@/components/ui/card";
 import { projects } from "../../data/projects";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 export default function ProjectsPage() {
   return (
@@ -30,8 +30,7 @@ export default function ProjectsPage() {
         </p>
         <h1 className="text-4xl font-semibold tracking-tight">Selected work</h1>
         <p className="max-w-2xl text-muted-foreground">
-          A handful of my recent projects that blend clean UI, thoughtful UX, and
-          a solid back-end foundation.
+          A handful of my recent projects.
         </p>
       </div>
 

@@ -54,12 +54,12 @@ export default function CoursePlatformCaseStudy() {
               CMS-driven lessons.
             </p>
             <div className="flex flex-wrap gap-2 pt-4">
-              <Badge variant="secondary">Next.js</Badge>
-              <Badge variant="secondary">TypeScript</Badge>
-              <Badge variant="secondary">Stripe</Badge>
-              <Badge variant="secondary">Prisma</Badge>
-              <Badge variant="secondary">Supabase</Badge>
-              <Badge variant="secondary">Sanity CMS</Badge>
+              <Badge variant="default">Next.js</Badge>
+              <Badge variant="default">TypeScript</Badge>
+              <Badge variant="default">Stripe</Badge>
+              <Badge variant="default">Prisma</Badge>
+              <Badge variant="default">Supabase</Badge>
+              <Badge variant="default">Sanity CMS</Badge>
             </div>
           </div>
           <div className="relative mt-4">

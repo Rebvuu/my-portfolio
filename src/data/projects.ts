@@ -12,7 +12,7 @@ export const projects: Project[] = [
       "Sanity CMS",
       "Stripe Integration",
     ],
-    link: "https://her-sacred-voice.vercel.app/",
+    link: "https://her-sacred-voice.vercel.app",
     url: "/projects/course-platform",
     repo: "",
     status: "live",
@@ -21,7 +21,7 @@ export const projects: Project[] = [
   {
     title: "Victorian Goddess",
     description:
-      "Modular E-Commerce Store Designed with Figma and Developed with Next.js & Sanity CMS",
+      "Online Store Designed with Figma and Developed with Next.js & Sanity CMS",
     tags: ["Next.js", "TypeScript", "Sanity CMS"],
     link: "",
     url: "/projects/online-store",
