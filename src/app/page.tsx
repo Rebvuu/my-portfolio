@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -67,7 +67,7 @@ const logoContainer = {
   },
 };
 
-const logoItem = {
+const logoItem: Variants = {
   hidden: {
     opacity: 0,
     y: 20,
