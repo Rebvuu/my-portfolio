@@ -3,7 +3,8 @@ import { Project } from "../../src/types/project";
 export const projects: Project[] = [
   {
     title: "Her Sacred Voice",
-    description: "Course Platform designed with Figma and developed with Next.js & Sanity CMS",
+    description:
+      "Course Platform designed with Figma and developed with Next.js & Sanity CMS",
     tags: [
       "Next.js",
       "TypeScript",
@@ -11,7 +12,7 @@ export const projects: Project[] = [
       "Sanity CMS",
       "Stripe Integration",
     ],
-    link: "https://hersacredvoice.com.au",
+    link: "https://her-sacred-voice.vercel.app",
     url: "/projects/course-platform",
     repo: "",
     status: "live",
@@ -20,7 +21,7 @@ export const projects: Project[] = [
   {
     title: "Victorian Goddess",
     description:
-      "Modular E-Commerce Store Designed with Figma and Developed with Next.js & Sanity CMS",
+      "Online Store Designed with Figma and Developed with Next.js & Sanity CMS",
     tags: ["Next.js", "TypeScript", "Sanity CMS"],
     link: "",
     url: "/projects/online-store",

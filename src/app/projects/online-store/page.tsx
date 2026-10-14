@@ -48,13 +48,10 @@ export default function EcommerceCaseStudy() {
         <section className="md:grid md:grid-cols-2 space-y-6">
           <div>
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight pb-2">
-              Modular <br></br>E-Commerce Store
+              Online Store
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Designed in Figma and developed using Next.js and Sanity. The goal
-              was to create a scalable, content-managed shopping experience with
-              reusable UI components and clean, responsive layouts across
-              devices.
+              Designed in Figma and developed using Next.js and Sanity.
             </p>
             <div className="flex flex-wrap gap-2 pt-4">
               <Badge variant="secondary">Next.js</Badge>
@@ -78,14 +75,28 @@ export default function EcommerceCaseStudy() {
 
         <Separator />
 
+        {/* My goal */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-semibold">My Goal</h2>
+
+          <p className="text-muted-foreground">
+            My goal was to create a scalable shopping platform with reusable UI
+            components and responsive layouts across devices that can be managed by the client
+            without touching code.
+          </p>
+        </section>
+
+        <Separator />
+
+        <Separator />
+
         {/* My role */}
         <section className="space-y-6">
           <h2 className="text-2xl font-semibold">My Role</h2>
 
           <ul className="space-y-2 text-muted-foreground list-disc pl-5">
             <li>UI Implementation from Figma designs</li>
-            <li>Component system architecture</li>
-            <li>Sanity CMS schema design</li>
+            <li>Implementation of Sanity CMS schema</li>
             <li>Dynamic product and category rendering</li>
             <li>Responsive layout implementation</li>
           </ul>
@@ -106,7 +117,7 @@ export default function EcommerceCaseStudy() {
                 <li>Rigid content structures</li>
                 <li>Poor scalability</li>
                 <li>Hardcoded product layouts</li>
-                <li>Inconsistent UI patterns</li>
+                <li>Inconsistent UI</li>
               </ul>
               {/* <Frown className="size-6 text-rose-400" /> */}
             </div>
@@ -115,7 +126,7 @@ export default function EcommerceCaseStudy() {
                 The aim was to build a storefront that:
               </p>
               <ul className="space-y-2 text-muted-foreground list-disc pl-5">
-                <li>Allows non-technical content updates</li>
+                <li>Allows no-code content updates</li>
                 <li>Scales with new product types</li>
                 <li>Maintains visual consistency</li>
                 <li>Prioritizes performance and clarity</li>
@@ -148,17 +159,16 @@ export default function EcommerceCaseStudy() {
               including:
             </p>
             <ul className="space-y-2 text-muted-foreground list-disc pl-5">
-              <li>Defined spacing scale</li>
-              <li>Consistent typography hierarchy</li>
+              <li>Consistent typography</li>
               <li>Component variants (buttons, cards, badges)</li>
               <li>Responsive breakpoints</li>
-              <li>Product card and gallery patterns</li>
+              <li>Product card and gallery structures</li>
             </ul>
           </div>
           <p className="text-muted-foreground">
             The development process focused on faithfully translating the design
             system into reusable React components while preserving spacing,
-            hierarchy, and interaction details.
+            hierarchy, and interaction states.
           </p>
 
           <img

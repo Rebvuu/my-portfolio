@@ -13,7 +13,7 @@ export default function ContactForm() {
   }
 
   return (
-    <Card className='border-muted/80 bg-white/80 shadow-sm backdrop-blur'>
+    <Card className="bg-background shadow-sm">
       <CardContent>
         <form onSubmit={handleSubmit}>
           <FieldGroup>
@@ -23,37 +23,40 @@ export default function ContactForm() {
               </FieldLabel>
               <Input
                 id="email"
-                type="email" 
+                type="email"
                 name="email"
                 placeholder="example@email.com"
                 required
               />
-              <ValidationError 
-                prefix="Email" 
+              <ValidationError
+                prefix="Email"
                 field="email"
                 errors={state.errors}
               />
             </Field>
             <Field>
-              <FieldLabel>Message<span className="text-destructive">*</span></FieldLabel>
+              <FieldLabel>
+                Message<span className="text-destructive">*</span>
+              </FieldLabel>
               <Textarea
                 id="message"
                 name="message"
                 placeholder="Type your message here"
                 required
               />
-              <ValidationError 
-                prefix="Message" 
+              <ValidationError
+                prefix="Message"
                 field="message"
                 errors={state.errors}
               />
             </Field>
             <Field orientation="horizontal">
-              <Button 
+              <Button
                 size="sm"
-                className="shadow-md shadow-primary/30 transition duration-300 hover:translate-x-0.5 hover:shadow-md cursor-pointer"
+                className="shadow-primary/30 transition duration-300 hover:transform hover:scale-110 hover:shadow-md cursor-pointer"
                 type="submit"
-                disabled={state.submitting}>
+                disabled={state.submitting}
+              >
                 Submit
               </Button>
             </Field>
